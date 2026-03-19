@@ -1,0 +1,134 @@
+body {
+    background: linear-gradient(135deg, rgba(236, 184, 206, 0.15) 0%, #faf9fc 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login-wrapper {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+  }
+
+  .login-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(90, 42, 130, 0.08);
+    overflow: hidden;
+  }
+
+  /* LEFT PANEL — Purple Gradient */
+  .login-panel-left {
+    background: linear-gradient(160deg, #5a2a82 0%, #7c4aa3 100%);
+    padding: 52px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+  }
+
+  .login-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 1.6rem;
+    font-weight: 700;
+  }
+
+  .login-tagline {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+  }
+
+  .login-tagline h2 {
+    color: white;
+    font-size: 1.8rem;
+    line-height: 1.4;
+  }
+
+  .login-tagline p {
+    color: rgba(255,255,255,0.8);
+    font-size: 0.95rem;
+  }
+
+  .login-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .login-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.85);
+  }
+
+  /* RIGHT PANEL */
+  .login-panel-right {
+    padding: 52px 40px;
+  }
+
+  .step-form { display: none; }
+  .step-form.active { display: block; }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #6B7280;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 24px;
+    background: none;
+    border: none;
+    padding: 0;
+  }
+
+  .back-link:hover {
+    color: #5a2a82;
+  }
+
+  .forgot-link {
+    background: none;
+    border: none;
+    color: #5a2a82;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+  }
+
+  .forgot-link:hover {
+    text-decoration: underline;
+  }
+
+  /* Button override to match theme */
+  .btn-primary {
+    background: linear-gradient(135deg, #5a2a82 0%, #7c4aa3 100%);
+    border: none;
+  }
+
+  .btn-primary:hover {
+    background: linear-gradient(135deg, #451b66 0%, #5a2a82 100%);
+  }
+
+  @media (max-width: 640px) {
+    .login-container { grid-template-columns: 1fr; }
+    .login-panel-left { display: none; }
+    .login-panel-right { padding: 36px 28px; }
+  }

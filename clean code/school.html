@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>For Schools | Parwah</title>
+
+    <!-- CSS Dependencies -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/school.css" rel="stylesheet" />
+
+    <!-- Main Script for Component Injection -->
+    <script defer src="js/script.js"></script>
+    <!-- Page Specific Script -->
+    <script defer src="js/school.js"></script>
+</head>
+
+<body>
+    <!-- Reusable Navbar -->
+    <div id="navbar"></div>
+
+    <!-- HERO -->
+    <section class="schools-hero" id="hero">
+        <div class="hero-split-container">
+
+            <!-- left: headline + CTA -->
+            <div class="hero-text-content hero-fade-up">
+
+                <h1>Partnering with Schools to Build Student Well-being</h1>
+                <p>
+                    Parwah works with educational institutions to strengthen student mental health,
+                    build resilience, and create supportive learning environments.
+                </p>
+                <div class="hero-ctas">
+                    <a href="#hero-form" class="primary-btn">Partner With Us</a>
+                    <a href="booksession.html" class="secondary-btn">Book a Session</a>
+                </div>
+            </div>
+
+            <!-- right: contact form -->
+            <div class="hero-form-content hero-fade-up" id="hero-form" style="animation-delay: 0.15s;">
+                <div class="reachout-container">
+                    <h2 class="reachout-title">Let's Talk About Your Students' Wellbeing</h2>
+                    <form class="reachout-form">
+                        <input class="full-width" placeholder="Full Name" type="text" />
+                        <input class="full-width" placeholder="Official Email ID" type="email" />
+                        <input class="full-width" placeholder="Phone Number" type="tel" />
+                        <input class="full-width" placeholder="Institute Name &amp; City" type="text" />
+                        <select class="full-width">
+                            <option>Select Role</option>
+                            <option>Principal</option>
+                            <option>Teacher</option>
+                            <option>School Counsellor</option>
+                            <option>Administrator</option>
+                            <option>Other</option>
+                        </select>
+                        <textarea class="full-width" placeholder="How can we support your institution?"></textarea>
+                        <button class="reachout-btn full-width" type="submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OFFER SECTION – heading lives inside the component -->
+    <section class="offer-section">
+        <div id="offer-section"></div>
+    </section>
+
+    <!-- IMPLEMENTATION MODEL -->
+    <section id="parwah-timeline">
+        <div class="container" id="implementation">
+            <h2 class="section-title">Our Unique Implementation Model</h2>
+
+            <div class="flex-row">
+                <div class="card seq-item seq-group-1">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-school">
+                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                            <polyline points="9 22 9 12 15 12 15 22" />
+                        </svg>
+                    </div>
+                    <h4>Ecosystem Integration</h4>
+                    <p>Works With Existing School Systems</p>
+                </div>
+
+                <div class="arrow seq-item seq-group-1">
+                    <div class="dashed-arrow"></div>
+                </div>
+
+                <div class="card seq-item seq-group-1">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-users">
+                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                            <circle cx="9" cy="7" r="4" />
+                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        </svg>
+                    </div>
+                    <h4>Trust Before Assessment</h4>
+                    <p>Engagement First, Data Later</p>
+                </div>
+
+                <div class="arrow seq-item seq-group-1">
+                    <div class="dashed-arrow"></div>
+                </div>
+
+                <div class="card seq-item seq-group-1">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-bar-chart-2">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg>
+                    </div>
+                    <h4>Trend Insights</h4>
+                    <p>Grade/School Level Insight</p>
+                </div>
+
+                <div class="arrow seq-item seq-group-1">
+                    <div class="dashed-arrow"></div>
+                </div>
+
+                <div class="card seq-item seq-group-1">
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-monitor">
+                            <rect width="20" height="14" x="2" y="3" rx="2" />
+                            <line x1="8" y1="21" x2="16" y2="21" />
+                            <line x1="12" y1="17" x2="12" y2="21" />
+                        </svg>
+                    </div>
+                    <h4>Continuous Tracking</h4>
+                    <p>Weekly Emotional Check-ins</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPARISON SECTION -->
+        <div class="container comparison-section" id="timeline-trigger">
+            <h2 class="section-title">How PARWAH is different</h2>
+            <div class="headers-row">
+                <div class="header-box trad-header">Traditional Approach</div>
+                <div class="header-box parwah-header">PARWAH Approach</div>
+            </div>
+            <div class="timeline-container">
+                <div class="center-line">
+                    <div class="center-line-fill" id="line-fill"></div>
+                </div>
+
+                <div class="timeline-row">
+                    <div class="card left anim-item" data-delay="200">
+                        <div class="text">
+                            <h4>One-time Workshops</h4>
+                            <p>Isolated events</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-delay="100"></div>
+                    <div class="card right anim-item" data-delay="300">
+                        <div class="text">
+                            <h4>Ecosystem Integration</h4>
+                            <p>Works with existing systems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-row">
+                    <div class="card left anim-item" data-delay="700">
+                        <div class="text">
+                            <h4>Student Screening</h4>
+                            <p>Data without context</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-delay="600"></div>
+                    <div class="card right anim-item" data-delay="800">
+                        <div class="text">
+                            <h4>Trust Building First</h4>
+                            <p>Engagement first, data later</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-row">
+                    <div class="card left anim-item" data-delay="1200">
+                        <div class="text">
+                            <h4>Individual Counselling</h4>
+                            <p>Wait-to-fail model</p>
+                        </div>
+                    </div>
+                    <div class="timeline-node" data-delay="1100"></div>
+                    <div class="card right anim-item" data-delay="1300">
+                        <div class="text">
+                            <h4>Trend Insights</h4>
+                            <p>Grade/School level insight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="impact-section">
+        <div class="container">
+            <h2 class="impact-title text-center">The Difference We Create</h2>
+            <div class="impact-grid">
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-star">
+                            <polygon
+                                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                        </svg>
+                    </div>
+                    <h3>Reputation Advantage</h3>
+                    <p>Stand out as a school that prioritizes student wellbeing.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-handshake">
+                            <path d="m11 17 2 2 6-6" />
+                            <path d="m18 14 1.5 1.5a1.5 1.5 0 0 1-2.12 2.12L15 15.25" />
+                            <path d="m13 10-3-3" />
+                            <path d="m9 14 5 5" />
+                            <path d="m10 8 4 4" />
+                            <path d="m8 10 7 7" />
+                            <path d="M12 5a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z" />
+                            <path d="m2 13 6 6" />
+                            <path d="m12 17-1 1-4-4 1-1" />
+                            <path d="m17 10-2-2" />
+                        </svg>
+                    </div>
+                    <h3>Stronger School Culture</h3>
+                    <p>A more emotionally safe and supportive student community.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-search-check">
+                            <circle cx="11" cy="11" r="8" />
+                            <path d="m21 21-4.3-4.3" />
+                            <path d="m8 11 2 2 4-4" />
+                        </svg>
+                    </div>
+                    <h3>Proactive Student Support</h3>
+                    <p>Identify challenges early through meaningful wellbeing insights.</p>
+                </div>
+                <div class="impact-card">
+                    <div class="impact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                            class="lucide lucide-book-open">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                        </svg>
+                    </div>
+                    <h3>CBSE-Aligned</h3>
+                    <p>Structured mental health support aligned with national guidelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reusable Footer -->
+    <div id="footer"></div>
+
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Holistic Wellbeing Framework</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #eef4f9 0%, #ffffff 50%, #e6f0ed 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .framework-container {
+            max-width: 1100px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+        }
+
+        .header {
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            color: #1b365d;
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .header h2 {
+            color: #2b7a5a;
+            font-size: 1.2rem;
+            font-weight: 400;
+        }
+
+        .diagram-area {
+            position: relative;
+            width: 100%;
+            height: 600px;
+            margin: 0 auto;
+        }
+
+        /* SVG connecting lines */
+        .lines {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .lines path {
+            fill: none;
+            stroke: #a0b2c0;
+            stroke-width: 1.5;
+            stroke-dasharray: 6 4;
+        }
+
+        /* Center Node */
+        .center-node {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* The glowing aura behind the center */
+        .center-node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 280px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,1) 30%, rgba(200,230,220,0.5) 70%, transparent 100%);
+            border-radius: 50%;
+            z-index: -1;
+            box-shadow: 0 0 40px rgba(66, 153, 225, 0.2), 0 0 60px rgba(72, 187, 120, 0.2);
+        }
+
+        .center-icon {
+            font-size: 5rem;
+            margin-bottom: 10px;
+            background: #fff;
+            padding: 10px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        }
+
+        .center-node h3 {
+            color: #1b365d;
+            font-size: 1.5rem;
+            line-height: 1.3;
+        }
+
+        .center-node hr {
+            width: 60px;
+            border: none;
+            height: 3px;
+            background: #f6ad55;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+
+        /* Peripheral Nodes */
+        .node {
+            position: absolute;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            width: 220px;
+            z-index: 5;
+            
+            /* Animation Setup */
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        /* JS will add this class to trigger the animation */
+        .node.visible {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+
+        .icon-circle {
+            width: 90px;
+            height: 90px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .icon-circle::after {
+            content: '';
+            position: absolute;
+            width: 110%;
+            height: 110%;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 60%, rgba(200,220,240,0.4) 100%);
+            z-index: -1;
+        }
+
+        .node p {
+            color: #1b365d;
+            font-weight: 600;
+            font-size: 1.05rem;
+            line-height: 1.3;
+        }
+
+        .node hr {
+            width: 30px;
+            border: none;
+            height: 3px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+
+        /* Specific Node Colors for the small underline */
+        .tl hr { background: #f6ad55; }
+        .tr hr { background: #48bb78; }
+        .br hr { background: #f6ad55; }
+        .bc hr { background: #f6ad55; }
+        .bl hr { background: #4299e1; }
+
+        /* Positioning the nodes around the center */
+        .tl { top: 5%; left: 5%; }
+        .tr { top: 5%; right: 5%; }
+        .br { top: 55%; right: 5%; }
+        .bc { bottom: 0; left: 50%; transform: translateX(-50%) scale(0.8) translateY(20px); }
+        .bl { top: 55%; left: 5%; }
+
+        /* Correction for bottom-center node to center it correctly during/after animation */
+        .node.bc.visible {
+            transform: translateX(-50%) scale(1) translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="framework-container">
+        <div class="header">
+            <h1>What We Offer to Schools</h1>
+            <h2>A Holistic Wellbeing Framework for the School Ecosystem</h2>
+        </div>
+
+        <div class="diagram-area">
+            
+            <svg class="lines" viewBox="0 0 1100 600" preserveAspectRatio="none">
+                <path d="M 550 270 Q 750 100 900 120" />
+                <path d="M 550 270 Q 750 350 900 400" />
+                <path d="M 550 270 Q 550 450 550 500" />
+                <path d="M 550 270 Q 350 350 200 400" />
+                <path d="M 550 270 Q 350 100 200 120" />
+            </svg>
+
+            <div class="center-node">
+                <div class="center-icon">🏫</div>
+                <h3>Holistic Model<br>of Wellbeing</h3>
+                <hr>
+            </div>
+
+            <div class="node tr" data-order="1">
+                <div class="icon-circle">📊</div>
+                <p>Wellbeing Insights<br>& Tracking</p>
+                <hr>
+            </div>
+
+            <div class="node br" data-order="2">
+                <div class="icon-circle">🛡️</div>
+                <p>Accessible<br>Counselling Support</p>
+                <hr>
+            </div>
+
+            <div class="node bc" data-order="3">
+                <div class="icon-circle">🌱</div>
+                <p>Wellbeing Culture<br>Initiatives</p>
+                <hr>
+            </div>
+
+            <div class="node bl" data-order="4">
+                <div class="icon-circle">👩‍🏫</div>
+                <p>Educator Capacity<br>Building</p>
+                <hr>
+            </div>
+
+            <div class="node tl" data-order="5">
+                <div class="icon-circle">👨‍👩‍👦</div>
+                <p>Student Wellbeing<br>Development</p>
+                <hr>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Select all peripheral nodes
+            const nodes = document.querySelectorAll('.node');
+            
+            // Sort nodes by their assigned 'data-order' attribute (Clockwise from Top Right)
+            const orderedNodes = Array.from(nodes).sort((a, b) => {
+                return parseInt(a.getAttribute('data-order')) - parseInt(b.getAttribute('data-order'));
+            });
+
+            // Iterate through the sorted nodes and apply a 0.25s (250ms) delay incrementally
+            orderedNodes.forEach((node, index) => {
+                setTimeout(() => {
+                    node.classList.add('visible');
+                }, index * 500); // 0ms, 250ms, 500ms, 750ms, 1000ms
+            });
+        });
+    </script>
+</body>
+</html>

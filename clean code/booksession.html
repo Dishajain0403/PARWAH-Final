@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Book a Session – Parwah</title>
+    
+    <!-- CSS Dependencies -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/booksession.css" rel="stylesheet" />
+    
+    <!-- Main Script for Component Injection -->
+    <script defer src="js/script.js"></script>
+    <script defer src="js/booksession.js"></script>
+</head>
+
+<body>
+    <!-- Reusable Navbar -->
+    <div id="navbar"></div>
+
+    <main class="booking-page section-padding">
+        <div class="container">
+            <div class="booking-hero text-center mb-40">
+                <h1>Let's find you the right support</h1>
+                <p>Fill in a few details and we'll match you with a counselor. Your information is always kept confidential.</p>
+            </div>
+
+            <div class="booking-wrap">
+                <div class="booking-card">
+                    <form id="bookingForm" novalidate>
+                        <!-- Personal Details -->
+                        <p class="form-section-title">Personal Details</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="firstName">First Name <span class="required">*</span></label>
+                                <input autocomplete="given-name" id="firstName" name="firstName" placeholder="Aanya" required type="text" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="lastName">Last Name <span class="required">*</span></label>
+                                <input autocomplete="family-name" id="lastName" name="lastName" placeholder="Sharma" required type="text" />
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="email">Email Address <span class="required">*</span></label>
+                                <input autocomplete="email" id="email" name="email" placeholder="aanya@school.edu" required type="email" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="phone">Phone Number <span class="required">*</span></label>
+                                <input autocomplete="tel" id="phone" name="phone" placeholder="+91 98765 43210" required type="tel" />
+                            </div>
+                        </div>
+
+                        <!-- Primary Concern -->
+                        <p class="form-section-title">What brings you here?</p>
+                        <label class="form-label mb-16">Primary Concern <span class="required">*</span></label>
+                        <div class="concern-grid" id="concernGrid">
+                            <label class="concern-pill">
+                                <input name="concern" required type="radio" value="anxiety" /> 
+                                <span class="pill-title">Anxiety</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="bullying" /> 
+                                <span class="pill-title">Bullying</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="career" /> 
+                                <span class="pill-title">Career</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="academics" /> 
+                                <span class="pill-title">Academics</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="relationships" /> 
+                                <span class="pill-title">Relationships</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="pressure" /> 
+                                <span class="pill-title">Pressure</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="grief" /> 
+                                <span class="pill-title">Grief</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="self-esteem" /> 
+                                <span class="pill-title">Self-Esteem</span>
+                            </label>
+                            <label class="concern-pill">
+                                <input name="concern" type="radio" value="other" /> 
+                                <span class="pill-title">Other</span>
+                            </label>
+                        </div>
+
+                        <!-- Preferred Schedule -->
+                        <p class="form-section-title">Preferred Schedule</p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label class="form-label" for="prefDate">Preferred Date <span class="required">*</span></label>
+                                <input id="prefDate" name="prefDate" required type="date" />
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label" for="prefTime">Preferred Time <span class="required">*</span></label>
+                                <select id="prefTime" name="prefTime" required>
+                                    <option disabled selected value="">Select a time slot</option>
+                                    <optgroup label="Morning">
+                                        <option value="08:00">8:00 AM</option>
+                                        <option value="09:00">9:00 AM</option>
+                                        <option value="10:00">10:00 AM</option>
+                                        <option value="11:00">11:00 AM</option>
+                                    </optgroup>
+                                    <optgroup label="Afternoon">
+                                        <option value="12:00">12:00 PM</option>
+                                        <option value="13:00">1:00 PM</option>
+                                        <option value="14:00">2:00 PM</option>
+                                        <option value="15:00">3:00 PM</option>
+                                        <option value="16:00">4:00 PM</option>
+                                    </optgroup>
+                                    <optgroup label="Evening">
+                                        <option value="17:00">5:00 PM</option>
+                                        <option value="18:00">6:00 PM</option>
+                                        <option value="19:00">7:00 PM</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Anything else -->
+                        <p class="form-section-title">Anything Else?</p>
+                        <div class="form-group">
+                            <label class="form-label" for="notes">Anything you'd like us to know <span class="optional">(optional)</span></label>
+                            <textarea id="notes" name="notes" placeholder="Share any context that might help your counselor prepare..." rows="4"></textarea>
+                            <p class="form-hint">Your message is private and only shared with your matched counselor.</p>
+                        </div>
+
+                        <!-- Alert placeholder -->
+                        <div class="hidden" id="formAlert"></div>
+
+                        <!-- CTA -->
+                        <button class="btn-continue" type="submit">Continue to Payment &rarr;</button>
+
+                        <!-- Trust bar -->
+                        <div class="trust-bar">
+                            <span class="trust-item">🔒 Secure Payment</span>
+                            <span class="trust-item">✅ Cancel anytime</span>
+                            <span class="trust-item">🤍 100% Confidential</span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Reusable Footer -->
+    <div id="footer"></div>
+
+    <!-- Page Specific Script -->
+    <script defer src="js/booksession.js"></script>
+</body>
+</html>

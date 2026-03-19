@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Parwah – Your Mental Wellness Companion</title>
+
+    <!-- CSS Dependencies -->
+    <link href="css/styles.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+
+    <!-- GSAP for animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <!-- Main Script for Component Injection -->
+    <script defer src="js/script.js"></script>
+    <!-- Page Specific Script -->
+    <script defer src="js/index.js"></script>
+</head>
+
+<body>
+    <!-- Reusable Navbar -->
+    <div id="navbar"></div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-text">
+            <h1>A space to pause, reflect, and feel supported</h1>
+            <p>Breaking stigma &amp; promoting emotional well-being across learning and growth environments.</p>
+            <div class="hero-buttons">
+                <a href="school.html" class="primary-btn">For Schools</a>
+                <a href="booksession.html" class="secondary-btn">Book a Session</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-slider">
+                <img alt="Support Session" src="img/img1.jpeg" />
+                <img alt="Emotional Well-being" src="img/img2.jpeg" />
+                <img alt="Student Growth" src="img/img3.jpeg" />
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT SECTION -->
+    <section class="change-section section-padding">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="change-title">The Change PARWAH Aims to Create</h2>
+                <p class="change-subtitle">
+                    PARWAH is designed to help schools move from reacting to student distress
+                    to <strong>proactively nurturing student wellbeing.</strong>
+                </p>
+            </div>
+
+            <div class="change-grid">
+
+                <!-- Card 1 -->
+                <div class="change-card card-blue">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3182CE" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                            <path d="m9 12 2 2 4-4"/>
+                        </svg>
+                    </div>
+                    <h3>Safe Spaces</h3>
+                    <p>Classrooms where students share thoughts freely, without fear of judgment.</p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="change-card card-green">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#38A169" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                            <path d="M3.22 12H9.5l1.5-3 2 6 1.5-3h6.28"/>
+                        </svg>
+                    </div>
+                    <h3>Early Support</h3>
+                    <p>Students seek help before concerns grow into bigger challenges.</p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="change-card card-orange">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C05621" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="3" width="7" height="7" rx="1"/>
+                            <rect x="14" y="14" width="7" height="7" rx="1"/>
+                            <rect x="3" y="14" width="7" height="7" rx="1"/>
+                        </svg>
+                    </div>
+                    <h3>Six Domains</h3>
+                    <p>Emotional, social, cognitive &amp; academic wellbeing, all addressed.</p>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="change-card card-purple">
+                    <div class="icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6B46C1" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+                        </svg>
+                    </div>
+                    <h3>Wellbeing Insights</h3>
+                    <p>Continuous tracking of student needs, handled with care and empathy.</p>
+                </div>
+
+            </div><!-- end .change-grid -->
+
+            <p class="change-footer text-center mt-24">
+                When students feel safe, heard, and supported, learning naturally becomes stronger.
+            </p>
+        </div>
+    </section>
+
+
+    <!-- PARWAH Framework (Animated Letter Slider) -->
+    <section id="parwah-slider-section">
+        <div class="parwah-slider-inner">
+            <!-- Section Label -->
+            <p class="parwah-label">THE PARWAH FRAMEWORK</p>
+
+            <!-- Big PARWAH letters -->
+            <div class="parwah-letters" id="parwahLetters">
+                <span class="parwah-letter" data-index="0">P</span>
+                <span class="parwah-letter" data-index="1">A</span>
+                <span class="parwah-letter" data-index="2">R</span>
+                <span class="parwah-letter" data-index="3">W</span>
+                <span class="parwah-letter" data-index="4">A</span>
+                <span class="parwah-letter" data-index="5">H</span>
+            </div>
+
+            <!-- Glow backdrop for active letter -->
+            <div class="parwah-glow-bg" id="parwahGlow"></div>
+
+            <!-- Index counter -->
+            <p class="parwah-counter" id="parwahCounter">1 / 6</p>
+
+            <!-- Dynamic title -->
+            <p class="parwah-description" id="parwahDescription">Psycho-social and Peer Support</p>
+
+            <!-- Dot indicators -->
+            <div class="parwah-dots" id="parwahDots">
+                <span class="parwah-dot"></span>
+                <span class="parwah-dot"></span>
+                <span class="parwah-dot"></span>
+                <span class="parwah-dot"></span>
+                <span class="parwah-dot"></span>
+                <span class="parwah-dot"></span>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section id="parwah-testimonials" class="section-padding">
+        <div class="container">
+            <div class="text-center mb-24">
+                <span class="badge"
+                    style="background: var(--primary); color: white; padding: 8px 20px; border-radius: 20px;">TESTIMONIALS</span>
+                <h2 style="font-size: 2.5rem; margin-top: 15px;">Voices from our students</h2>
+            </div>
+
+            <div class="testimonials-container">
+                <div class="testimonial-card">
+                    <div class="quote-mark">“</div>
+                    <p class="testimonial-text">
+                        I was really anxious before my exams. Parwah helped me find a counselor in minutes.
+                        The session changed everything for me.
+                    </p>
+                    <div class="user">
+                        <div class="avatar green">AK</div>
+                        <div class="name">Aarav Kumar</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-mark">“</div>
+                    <p class="testimonial-text">
+                        The breathing game actually works! I use it before stressful classes and feel so much calmer.
+                        Thank you, Parwah.
+                    </p>
+                    <div class="user">
+                        <div class="avatar blue">SR</div>
+                        <div class="name">Sneha Rao</div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="quote-mark">“</div>
+                    <p class="testimonial-text">
+                        Knowing that there's a platform that genuinely cares about my mental health
+                        makes school feel so much more manageable.
+                    </p>
+                    <div class="user">
+                        <div class="avatar orange">PM</div>
+                        <div class="name">Priya Mehta</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REACHOUT CTA -->
+    <section class="cta-section">
+        <div class="container text-center">
+            <div class="cta-content">
+                <h2>Ready to Take the First Step?</h2>
+                <p>Join thousands of students who have found support through Parwah</p>
+                <div class="hero-buttons">
+                    <a href="school.html" class="primary-btn">Partner With Us</a>
+                    <a href="booksession.html" class="secondary-btn">Book Your First Session</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reusable Footer -->
+    <div id="footer"></div>
+
+    <!-- Page Specific Script -->
+    <script defer src="js/index.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcements – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <!-- Mobile hamburger -->
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link active">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>All Announcements</h1>
+        <p>Stay updated with the latest news and events from Parwah.</p>
+        <div class="accent-bar"></div>
+      </div>
+
+      <div class="space-y-4" id="announcements-list">
+        <!-- Announcements will be rendered here -->
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>
+    function renderAnnouncements() {
+      const container = document.getElementById('announcements-list');
+      if (!container || !window.mockData) return;
+      
+      container.innerHTML = '';
+      const keywords = ["workshop", "session", "group", "class", "yoga", "talk", "seminar"];
+      
+      const filtered = mockData.announcements.filter(a => {
+        const text = (a.title + " " + a.content).toLowerCase();
+        return keywords.some(k => text.includes(k));
+      });
+
+      filtered.forEach(a => {
+        container.innerHTML += `
+          <a href="announcement-details.html?id=${a.id}" class="card flex items-center gap-5">
+            <div class="workshop-icon" style="background: var(--primary-light); color: var(--primary);">
+              ${a.icon}
+            </div>
+            <div class="flex-1">
+              <div class="flex justify-between items-center mb-1">
+                <h3 class="font-semibold text-lg">${a.title}</h3>
+                <span class="text-xs text-muted">${a.date}</span>
+              </div>
+              <p class="text-sm text-muted">${a.content.substring(0, 100)}${a.content.length > 100 ? '...' : ''}</p>
+            </div>
+          </a>
+        `;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = '<p class="text-center text-muted py-8">No new workshop announcements at this time.</p>';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', renderAnnouncements);
+  </script>
+</body>
+</html>

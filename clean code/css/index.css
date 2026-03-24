@@ -7,7 +7,7 @@
     align-items: center;
     text-align: center;
     /* Tighter top padding (navbar is ~56px), generous but not wasteful */
-    padding: 72px 6% 52px;
+    padding: 48px 6% 32px;
     gap: 0;                          /* handled per-child with margin */
     /* Raise overlay opacity: less pattern noise, text reads cleanly */
     background: linear-gradient(rgba(255,255,255,0.94), rgba(255,255,255,0.94)),
@@ -44,48 +44,6 @@
     align-items: stretch;            /* full-width buttons */
 }
 
-/* Primary button – solid purple, elevated */
-.primary-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--primary);
-    color: var(--white);
-    padding: 13px 30px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    box-shadow: 0 4px 14px rgba(78, 30, 112, 0.28);
-    transition: background 0.25s ease, box-shadow 0.25s ease, transform 0.2s ease;
-}
-
-.primary-btn:hover {
-    background: var(--primary-dark);
-    box-shadow: 0 6px 20px rgba(78, 30, 112, 0.38);
-    transform: translateY(-1px);
-}
-
-/* Secondary button – outline, same height as primary */
-.secondary-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: transparent;
-    border: 1.5px solid var(--primary);
-    color: var(--primary);
-    padding: 13px 30px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    letter-spacing: 0.01em;
-    transition: background 0.25s ease, color 0.25s ease;
-}
-
-.secondary-btn:hover {
-    background: rgba(78, 30, 112, 0.07);
-    color: var(--primary-dark);
-}
 
 .hero-image {
     width: 100%;
@@ -168,7 +126,7 @@
 
 /* ── CTA Section ── */
 .cta-section {
-    padding: 56px 16px;              /* tighter top/bottom, consistent side */
+    padding: 40px 16px;              /* tighter top/bottom, consistent side */
     background: #f9f5ff;
     text-align: center;
 }
@@ -266,7 +224,6 @@
 .card-green  { background: #edf7f2; }
 .card-orange { background: #fff4eb; }
 .card-purple { background: #f3edfc; }
-.card-teal   { background: #e6f6f6; }
 
 /* Tablet: slightly looser gap, same 2 cols */
 @media (min-width: 600px) {
@@ -315,7 +272,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 100px 20px;
+    padding: 60px 20px;
     border-top: 1px solid rgba(78, 30, 112, 0.07);
     border-bottom: 1px solid rgba(78, 30, 112, 0.07);
 }
@@ -394,8 +351,6 @@
     opacity: 0.7;
 }
 
-/* Glow orb not used */
-.parwah-glow-bg { display: none; }
 
 /* Counter e.g. "1 / 6" */
 .parwah-counter {
@@ -455,6 +410,329 @@
     border-radius: 4px;
     opacity: 1;
 }
+
+/* ===================================================
+   THE PARWAH CYCLE SECTION
+   =================================================== */
+  /*How parwah works */
+  /* CIRCULAR PARWAH CYCLE SECTION */
+  .parwah-circular-section {
+    padding: 48px 8%;
+    background: none;
+    margin: 20px 0;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .circular-header {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 60px auto;
+  }
+
+  .circular-header h2 {
+    font-size: 38px;
+    color: #29375a;
+    margin-bottom: 20px;
+  }
+
+  .circular-header p {
+    color: #5c6b82;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  .circular-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 70px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .circular-diagram-box {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+  }
+
+  .circular-diagram {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    flex-shrink: 0;
+  }
+
+  .circular-track {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: spinTrack 80s linear infinite;
+  }
+
+  @keyframes spinTrack {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .circular-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 170px;
+    height: 170px;
+    background: #5a2a82;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(90, 42, 130, 0.3);
+    border: 6px solid #fdfcff;
+    z-index: 10;
+  }
+
+  .circular-center h3 {
+    font-size: 22px;
+    margin-bottom: 5px;
+    color: white;
+  }
+
+  .circular-center p {
+    font-size: 13px;
+    opacity: 0.8;
+    margin: 0;
+    color: white;
+  }
+
+  .circle-node {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -30px;
+    margin-left: -30px;
+    width: 60px;
+    height: 60px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 22px;
+    color: #8B5BE6;
+    border: 2px solid #8B5BE6;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 20;
+  }
+
+  .node-label {
+    position: absolute;
+    top: 75px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2e3a59;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 3px 10px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    pointer-events: none;
+  }
+
+  .circle-node:hover {
+    box-shadow: 0 8px 20px rgba(139, 91, 230, 0.4);
+  }
+
+  .circle-node.active {
+    background: #8B5BE6;
+    color: white;
+    border-color: #8B5BE6;
+    transform: scale(1.15);
+    box-shadow: 0 10px 25px rgba(139, 91, 230, 0.4);
+  }
+
+  .node-1 {
+    transform: rotate(-90deg) translate(200px) rotate(90deg);
+  }
+
+  .node-2 {
+    transform: rotate(-18deg) translate(200px) rotate(18deg);
+  }
+
+  .node-3 {
+    transform: rotate(54deg) translate(200px) rotate(-54deg);
+  }
+
+  .node-4 {
+    transform: rotate(126deg) translate(200px) rotate(-126deg);
+  }
+
+  .node-5 {
+    transform: rotate(198deg) translate(200px) rotate(-198deg);
+  }
+
+  .node-1.active {
+    transform: rotate(-90deg) translate(200px) rotate(90deg) scale(1.15);
+  }
+
+  .node-2.active {
+    transform: rotate(-18deg) translate(200px) rotate(18deg) scale(1.15);
+  }
+
+  .node-3.active {
+    transform: rotate(54deg) translate(200px) rotate(-54deg) scale(1.15);
+  }
+
+  .node-4.active {
+    transform: rotate(126deg) translate(200px) rotate(-126deg) scale(1.15);
+  }
+
+  .node-5.active {
+    transform: rotate(198deg) translate(200px) rotate(-198deg) scale(1.15);
+  }
+
+  /* Content Box */
+  .circular-content-box {
+    flex: 1;
+    max-width: 500px;
+  }
+
+  .cycle-controls {
+    display: flex;
+    gap: 15px;
+    margin-top: 25px;
+    justify-content: flex-start;
+  }
+
+  .cycle-btn {
+    background: white;
+    border: 2px solid #8B5BE6;
+    color: #8B5BE6;
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .cycle-btn:hover {
+    background: #8B5BE6;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(139, 91, 230, 0.2);
+  }
+
+  .cycle-card {
+    background: white;
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+    border: 1px solid rgba(139, 91, 230, 0.1);
+    animation: fadeInCard 0.4s ease-out forwards;
+  }
+
+  @keyframes fadeInCard {
+    from {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .card-step {
+    display: inline-block;
+    background: rgba(139, 91, 230, 0.1);
+    color: #8B5BE6;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .cycle-card h3 {
+    font-size: 26px;
+    color: #2e3a59;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+
+  .cycle-card p,
+  .cycle-card ul {
+    color: #212a39;
+    font-size: 16px;
+    line-height: 1.7;
+    margin-bottom: 20px;
+  }
+
+  .cycle-card li {
+    margin-bottom: 12px;
+  }
+
+  .cycle-card .emphasis {
+    color: #4E1170;
+    font-weight: 600;
+    font-style: italic;
+    background: rgba(78, 17, 112, 0.04);
+    padding: 18px;
+    border-left: 5px solid #4E1170;
+    border-radius: 0 12px 12px 0;
+    margin-bottom: 0;
+  }
+
+  /* Responsive */
+  @media(max-width: 950px) {
+    .circular-wrapper {
+      flex-direction: column;
+      gap: 50px;
+    }
+
+    .circular-diagram {
+      transform: scale(0.85);
+    }
+
+    .circular-content-box {
+      max-width: 100%;
+      width: 100%;
+    }
+  }
+
+  @media(max-width: 500px) {
+    .circular-diagram {
+      transform: scale(0.65);
+    }
+
+    .circular-header h2 {
+      font-size: 32px;
+    }
+
+    .circular-wrapper {
+      gap: 20px;
+    }
+
+    .cycle-card {
+      padding: 30px;
+    }
+  }
 
 /* ── Responsive ── */
 @media (max-width: 480px) {
@@ -550,4 +828,17 @@
     .testimonial-card {
         min-width: 350px;
     }
+}
+
+/* Badge styles moved from inline index.html */
+.badge {
+    background: var(--primary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-block;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
 }

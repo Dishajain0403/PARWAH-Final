@@ -25,6 +25,18 @@ async function injectComponent(elementId, filePath, callback) {
         return;
     }
 
+    // NEW: Check if component is already available in window.ParwahComponents
+    // Map filePath to component key (navbar, footer, offer, etc.)
+    const componentKey = filePath.split('/').pop().split('.')[0];
+    
+    if (componentKey && window.ParwahComponents && window.ParwahComponents[componentKey]) {
+        element.innerHTML = window.ParwahComponents[componentKey];
+        console.log(`Successfully injected from memory: ${componentKey}`);
+        if (callback) callback();
+        return;
+    }
+
+    // Fallback to fetch (original behavior)
     try {
         const response = await fetch(filePath);
         if (response.ok) {

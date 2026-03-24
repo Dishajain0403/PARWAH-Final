@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Workshop – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Create New Workshop</h1>
+        <p>Organize a wellness session for your peers</p>
+        <div class="accent-bar"></div>
+      </div>
+      
+      <div class="card card-lg">
+        <form id="createWorkshopForm" class="space-y-4">
+          <div class="form-group">
+            <label for="title">Workshop Title</label>
+            <input type="text" id="title" placeholder="e.g., Morning Meditation" required class="w-full p-2 border rounded">
+          </div>
+          <div class="form-group">
+            <label for="date">Date & Time</label>
+            <input type="text" id="date" placeholder="e.g., Nov 20, 2024 • 10:00 AM" required class="w-full p-2 border rounded">
+          </div>
+          <div class="form-group">
+            <label for="host">Host Name</label>
+            <input type="text" id="host" placeholder="Your Name" required class="w-full p-2 border rounded">
+          </div>
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea id="description" rows="4" placeholder="What is this workshop about?" required class="w-full p-2 border rounded"></textarea>
+          </div>
+          <div class="flex gap-4 pt-4">
+            <button type="submit" class="btn btn-primary flex-1">Create Workshop</button>
+            <button type="button" class="btn btn-ghost" onclick="history.back()">Cancel</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    document.getElementById('createWorkshopForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type="submit"]');
+      UI.setLoading(btn, true, 'Creating...');
+      
+      setTimeout(() => {
+        UI.setLoading(btn, false);
+        UI.showAlert('body', 'Workshop created successfully! (Simulated)', 'success');
+        setTimeout(() => {
+          window.location.href = '../index.html';
+        }, 1500);
+      }, 1000);
+    });
+  </script>
+</body>
+</html>

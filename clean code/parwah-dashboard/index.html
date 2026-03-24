@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Parwah – Student Wellness Dashboard</title>
+  <meta name="description" content="Parwah mental wellness dashboard for students">
+  <link rel="stylesheet" href="css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="js/api.js"></script>
+  <script src="js/mockData.js"></script>
+  <script>
+    // Immediate auth check
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <!-- Mobile hamburger -->
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="pages/announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <!-- Sidebar -->
+    <nav class="sidebar" id="sidebar">
+      <a href="../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="index.html" class="nav-link active" data-page="dashboard">Dashboard</a></li>
+        <li class="nav-item"><a href="pages/announcements.html" class="nav-link" data-page="announcements">Announcements</a></li>
+        <li class="nav-item"><a href="pages/workshops.html" class="nav-link" data-page="workshops">Workshops</a></li>
+        <li class="nav-item"><a href="pages/counselling.html" class="nav-link" data-page="counselling">Counselling</a></li>
+        <li class="nav-item"><a href="pages/knowledge-hub.html" class="nav-link" data-page="knowledge">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="pages/anonymous-reachout.html" class="nav-link" data-page="support">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="pages/feedback.html" class="nav-link" data-page="feedback">Feedback</a></li>
+        <li class="nav-item"><a href="pages/fun-activities.html" class="nav-link" data-page="games">Fun Activities</a></li>
+        <li class="nav-item"><a href="pages/quiz.html" class="nav-link" data-page="quiz">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <!-- Profile strip -->
+      <div class="card profile-strip">
+        <div class="profile-avatar">🧑‍🎓</div>
+        <div class="profile-info">
+          <h1>Good evening, Pass 👋</h1>
+          <p>Class X • Section B • Delhi Public School</p>
+        </div>
+        <div class="profile-contact">
+          <span>✉️ aarav.sharma@school.edu</span>
+          <span>📞 +91 98765 43210</span>
+        </div>
+      </div>
+
+      <!-- Weekly Check-In -->
+      <section class="checkin-card">
+        <h2 class="text-xl font-semibold mb-1">Weekly Check-In</h2>
+        <p class="text-muted mb-6">Tell us how you're feeling this week</p>
+        <div class="mood-buttons">
+          <button class="mood-btn" data-action="set_mood" data-id="low" aria-label="Low">😔</button>
+          <button class="mood-btn" data-action="set_mood" data-id="okay" aria-label="Okay">😐</button>
+          <button class="mood-btn" data-action="set_mood" data-id="good" aria-label="Good">😊</button>
+          <button class="mood-btn" data-action="set_mood" data-id="great" aria-label="Great">😁</button>
+        </div>
+        <a href="pages/checkin.html" class="btn btn-primary btn-lg" data-action="start_checkin">Start Check-In</a>
+      </section>
+
+    </main>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/mockData.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

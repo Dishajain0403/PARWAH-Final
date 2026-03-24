@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lesson – Parwah</title>
+  <link rel="stylesheet" href="../../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../../js/api.js"></script>
+  <script src="../../js/mockData.js"></script>
+  <script src="../../js/app.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="../announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="../announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="../knowledge-hub.html" class="nav-link active">Knowledge Hub</a></li>
+      </ul>
+    </nav>
+    <main class="main">
+      <div id="lesson-container" class="max-w-3xl mx-auto">
+        <!-- Dynamic content -->
+      </div>
+    </main>
+  </div>
+  <script>
+    function renderLesson() {
+      const params = new URLSearchParams(window.location.search);
+      const courseId = parseInt(params.get('id'));
+      const lessonId = parseInt(params.get('lesson'));
+      
+      const course = mockData.courses.find(c => c.id === courseId);
+      const lesson = course ? course.lessons.find(l => l.id === lessonId) : null;
+      const container = document.getElementById('lesson-container');
+
+      if (!lesson) {
+        container.innerHTML = `<h1>Lesson Not Found</h1><a href="../knowledge-hub.html">Back to Hub</a>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="mb-6">
+          <a href="course.html?id=${courseId}" class="text-sm text-primary font-medium">← Back to Course Overview</a>
+        </div>
+        
+        <div class="card p-8">
+          <div class="mb-8">
+            <span class="text-xs uppercase tracking-widest text-primary font-bold">Lesson ${lesson.id} of ${course.lessons.length}</span>
+            <h1 class="text-3xl font-bold mt-2">${lesson.title}</h1>
+            <div class="accent-bar"></div>
+          </div>
+          
+          <div class="prose max-w-none text-lg leading-relaxed mb-12">
+            <p>${lesson.content}</p>
+          </div>
+          
+          <div class="flex items-center justify-between pt-8 border-t">
+            <span class="text-muted">Estimated reading: ${lesson.duration}</span>
+            <button id="completeBtn" class="btn btn-primary btn-lg">Mark as Complete ✓</button>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('completeBtn').onclick = function() {
+        State.updateProgress(courseId, lessonId);
+        UI.showAlert('body', 'Lesson completed! Great job.', 'success');
+        setTimeout(() => {
+          window.location.href = `course.html?id=${courseId}`;
+        }, 1500);
+      };
+    }
+    document.addEventListener('DOMContentLoaded', renderLesson);
+  </script>
+</body>
+</html>

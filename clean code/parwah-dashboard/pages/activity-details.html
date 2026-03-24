@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Activity Details – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div id="details-container">
+        <!-- Dynamic content -->
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    function renderDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      const activity = mockData.activities.find(a => a.id === id);
+      const container = document.getElementById('details-container');
+
+      if (!activity) {
+        container.innerHTML = `<h1>Activity Not Found</h1><a href="fun-activities.html">Back to Activities</a>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="page-header text-center">
+          <div class="text-6xl mb-4 animate-float">${activity.icon}</div>
+          <h1>${activity.title}</h1>
+          <p class="text-muted">${activity.type}</p>
+          <div class="accent-bar mx-auto"></div>
+        </div>
+        
+        <div class="card card-lg text-center space-y-6">
+          <p class="text-lg">${activity.description}</p>
+          
+          <div class="flex flex-col gap-3 max-w-sm mx-auto">
+            <button class="btn btn-primary btn-lg" data-action="join_activity" data-id="${activity.id}">${activity.type === 'Game' ? 'Start Playing' : 'Register'}</button>
+            <button class="btn btn-ghost" onclick="history.back()">Go Back</button>
+          </div>
+        </div>
+      `;
+    }
+    document.addEventListener('DOMContentLoaded', renderDetails);
+  </script>
+</body>
+</html>

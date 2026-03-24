@@ -16,15 +16,19 @@ document.addEventListener('DOMContentLoaded', () => {
  * (called as callback after component is injected)
  */
 function initOfferDiagram() {
-    const nodes = document.querySelectorAll('.fw-node');
+    const nodes = document.querySelectorAll('.fade-item');
     if (!nodes.length) return;
 
-    const ordered = Array.from(nodes).sort((a, b) =>
-        parseInt(a.dataset.order || 0) - parseInt(b.dataset.order || 0)
-    );
+    // Clockwise order: item1 (TL), item2 (TR), item4 (BR), item5 (B), item3 (BL)
+    const clockwiseOrder = [1, 2, 4, 5, 3];
+    const ordered = Array.from(nodes).sort((a, b) => {
+        const aNum = parseInt(Array.from(a.classList).find(c => c.startsWith('item'))?.replace('item', '') || 0);
+        const bNum = parseInt(Array.from(b.classList).find(c => c.startsWith('item'))?.replace('item', '') || 0);
+        return clockwiseOrder.indexOf(aNum) - clockwiseOrder.indexOf(bNum);
+    });
 
     ordered.forEach((node, i) => {
-        setTimeout(() => node.classList.add('visible'), i * 450);
+        setTimeout(() => node.classList.add('visible'), i * 400);
     });
 }
 
@@ -68,21 +72,13 @@ function initTimelineAnimation() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 // Animate line
-                if (lineFill) lineFill.style.height = '100%';
+                if (lineFill) lineFill.classList.add('visible');
                 
-                // Animate nodes and cards
-                nodes.forEach(node => {
-                    const delay = parseInt(node.getAttribute('data-delay') || 0);
-                    setTimeout(() => {
-                        node.classList.add('active');
-                    }, delay);
-                });
-
+                // Animate cards sequentially based on data-delay
                 cards.forEach(card => {
                     const delay = parseInt(card.getAttribute('data-delay') || 0);
                     setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'translateY(0)';
+                        card.classList.add('visible');
                     }, delay);
                 });
                 

@@ -1,5 +1,3 @@
-gsap.registerPlugin(ScrollTrigger);
-
 // ── PARWAH Animated Letter Slider ──────────────────────────────────────────
 (function initParwahSlider() {
     const descriptions = [
@@ -105,6 +103,55 @@ if (testimonialContainer) {
         testimonialContainer.scrollLeft = scrollLeft - walk;
     });
 }
+
+
+
+
+// ── THE PARWAH CYCLE INTERACTION (USER PROVIDED) ─────────────────────────────
+let currentCycle = 1;
+let cycleInterval;
+
+function activateCycle(step) {
+  for (let i = 1; i <= 5; i++) {
+    let node = document.querySelector('.node-' + i);
+    let card = document.getElementById('cycle-card-' + i);
+    if (node) node.classList.remove('active');
+    if (card) card.style.display = 'none';
+  }
+  let activeNode = document.querySelector('.node-' + step);
+  let activeCard = document.getElementById('cycle-card-' + step);
+
+  if (activeNode) activeNode.classList.add('active');
+  if (activeCard) activeCard.style.display = 'block';
+
+  currentCycle = step;
+  clearInterval(cycleInterval);
+  startCycleTimer();
+}
+
+function nextCycle() {
+  let next = currentCycle >= 5 ? 1 : currentCycle + 1;
+  activateCycle(next);
+}
+
+function prevCycle() {
+  let prev = currentCycle <= 1 ? 5 : currentCycle - 1;
+  activateCycle(prev);
+}
+
+function startCycleTimer() {
+  cycleInterval = setInterval(() => {
+    let next = currentCycle >= 5 ? 1 : currentCycle + 1;
+    activateCycle(next);
+  }, 6000);
+}
+
+// Global exposure for onclick attributes in HTML
+window.activateCycle = activateCycle;
+window.nextCycle = nextCycle;
+window.prevCycle = prevCycle;
+
+setTimeout(startCycleTimer, 1000);
 
 
 

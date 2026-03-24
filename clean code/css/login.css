@@ -19,7 +19,7 @@ body {
     max-width: 900px;
     width: 100%;
     background: white;
-    border-radius: 24px;
+    border-radius: var(--radius-xl);
     box-shadow: 0 10px 40px rgba(90, 42, 130, 0.08);
     overflow: hidden;
   }

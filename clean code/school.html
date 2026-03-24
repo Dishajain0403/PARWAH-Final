@@ -11,6 +11,7 @@
     <link href="css/school.css" rel="stylesheet" />
 
     <!-- Main Script for Component Injection -->
+    <script src="js/components-data.js"></script>
     <script defer src="js/script.js"></script>
     <!-- Page Specific Script -->
     <script defer src="js/school.js"></script>
@@ -21,7 +22,7 @@
     <div id="navbar"></div>
 
     <!-- HERO -->
-    <section class="schools-hero" id="hero">
+    <section class="schools-hero" id="school-hero" style="background: linear-gradient(135deg, #f5f3ff 0%, #ede9fe 100%);">
         <div class="hero-split-container">
 
             <!-- left: headline + CTA -->
@@ -77,11 +78,13 @@
             <div class="flex-row">
                 <div class="card seq-item seq-group-1">
                     <div class="icon-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-school">
-                            <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-                            <polyline points="9 22 9 12 15 12 15 22" />
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3 9L12 2L21 9V20C21 21.1 20.1 22 19 22H5C3.9 22 3 21.1 3 20V9Z" fill="#FDFCF0" stroke="#8D6E63" stroke-width="1.2"/>
+                            <path d="M9 22V12H15V22" fill="#8D6E63"/>
+                            <rect x="5" y="11" width="4" height="4" fill="#BBDEFB" stroke="#607D8B" stroke-width="0.8"/>
+                            <rect x="15" y="11" width="4" height="4" fill="#BBDEFB" stroke="#607D8B" stroke-width="0.8"/>
+                            <path d="M12 2V5" stroke="#4CAF50" stroke-width="1.2"/>
+                            <path d="M12 2L15 3.5L12 5" fill="#4CAF50"/>
                         </svg>
                     </div>
                     <h4>Ecosystem Integration</h4>
@@ -94,13 +97,10 @@
 
                 <div class="card seq-item seq-group-1">
                     <div class="icon-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-users">
-                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                            <circle cx="9" cy="7" r="4" />
-                            <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.27 2 8.5C2 5.41 4.41 3 7.5 3C9.24 3 10.91 3.81 12 5.08C13.09 3.81 14.76 3 16.5 3C19.59 3 22 5.41 22 8.5C22 12.27 18.6 15.36 13.45 20.03L12 21.35Z" fill="#FFD54F" />
+                            <path d="M9 12C9 12 10.5 10.5 12 12C13.5 13.5 15 12 15 12" stroke="#E67E22" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M10 14C10 14 11 13 12 14C13 15 14 14 14 14" stroke="#E67E22" stroke-width="1.5" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <h4>Trust Before Assessment</h4>
@@ -113,12 +113,12 @@
 
                 <div class="card seq-item seq-group-1">
                     <div class="icon-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-bar-chart-2">
-                            <line x1="18" y1="20" x2="18" y2="10" />
-                            <line x1="12" y1="20" x2="12" y2="4" />
-                            <line x1="6" y1="20" x2="6" y2="14" />
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="12" width="4" height="8" fill="#F06292" stroke="#AD1457" stroke-width="0.8"/>
+                            <rect x="10" y="6" width="4" height="14" fill="#4FC3F7" stroke="#0288D1" stroke-width="0.8"/>
+                            <rect x="16" y="9" width="4" height="11" fill="#CFD8DC" stroke="#546E7A" stroke-width="0.8"/>
+                            <path d="M4 12L6 10H10V12H8L6 14V20H4V12Z" fill="#AD1457" opacity="0.2"/>
+                            <path d="M10 6L12 4H16V6H14L12 8V20H10V6Z" fill="#0288D1" opacity="0.2"/>
                         </svg>
                     </div>
                     <h4>Trend Insights</h4>
@@ -131,12 +131,11 @@
 
                 <div class="card seq-item seq-group-1">
                     <div class="icon-box">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                            class="lucide lucide-monitor">
-                            <rect width="20" height="14" x="2" y="3" rx="2" />
-                            <line x1="8" y1="21" x2="16" y2="21" />
-                            <line x1="12" y1="17" x2="12" y2="21" />
+                        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="4" y="5" width="16" height="10" rx="1" fill="#BBDEFB" stroke="#1976D2" stroke-width="1.2"/>
+                            <rect x="2" y="15" width="20" height="2" rx="1" fill="#90A4AE" stroke="#455A64" stroke-width="1.2"/>
+                            <path d="M10 15L11 17H13L14 15" fill="#455A64"/>
+                            <rect x="6" y="7" width="12" height="6" fill="#E3F2FD"/>
                         </svg>
                     </div>
                     <h4>Continuous Tracking</h4>
@@ -147,60 +146,104 @@
 
         <!-- COMPARISON SECTION -->
         <div class="container comparison-section" id="timeline-trigger">
-            <h2 class="section-title">How PARWAH is different</h2>
-            <div class="headers-row">
-                <div class="header-box trad-header">Traditional Approach</div>
-                <div class="header-box parwah-header">PARWAH Approach</div>
-            </div>
-            <div class="timeline-container">
-                <div class="center-line">
-                    <div class="center-line-fill" id="line-fill"></div>
-                </div>
+            <h2 class="section-title">How PARWAH is Different</h2>
+            <p class="section-subtitle">Beyond isolated interventions towards an integrated ecosystem.</p>
 
+            <div class="headers-row">
+                <div class="header-box trad-header">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                    Traditional Approach
+                </div>
+                <div class="header-box parwah-header">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px;"><polyline points="20 6 9 17 4 12"/></svg>
+                    PARWAH Approach
+                </div>
+            </div>
+
+            <div class="timeline-container">
+                <div class="center-line"><div class="center-line-fill" id="line-fill"></div></div>
+
+                <!-- ROW 1 -->
                 <div class="timeline-row">
                     <div class="card left anim-item" data-delay="200">
-                        <div class="text">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#e67e22" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>One-time Workshops</h4>
                             <p>Isolated events</p>
                         </div>
                     </div>
-                    <div class="timeline-node" data-delay="100"></div>
+                    <div class="timeline-node" data-row="1"></div>
                     <div class="card right anim-item" data-delay="300">
-                        <div class="text">
+                        <div class="card-icon-box parwah-icon">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#27ae60" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M3 7v1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7m0 1a3 3 0 0 0 6 0V7H3"/><path d="M19 21v-4a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v4"/><path d="M9 21v-4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>Ecosystem Integration</h4>
                             <p>Works with existing systems</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- ROW 2 -->
                 <div class="timeline-row">
-                    <div class="card left anim-item" data-delay="700">
-                        <div class="text">
+                    <div class="card left anim-item" data-delay="400">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8e44ad" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.8 2.3A.3.3 0 1 0 5 2H4a2 2 0 0 0-2 2v5a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6V4a2 2 0 0 0-2-2h-1a.3.3 0 1 0 .2.3"/><path d="M8 15v1a6 6 0 0 0 6 6v0a6 6 0 0 0 6-6v-4"/><circle cx="20" cy="10" r="2"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>Student Screening</h4>
                             <p>Data without context</p>
                         </div>
                     </div>
-                    <div class="timeline-node" data-delay="600"></div>
-                    <div class="card right anim-item" data-delay="800">
-                        <div class="text">
+                    <div class="timeline-node" data-row="2"></div>
+                    <div class="card right anim-item" data-delay="500">
+                        <div class="card-icon-box parwah-icon" style="background: #fff8e1;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#f39c12" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2 4-4"/><path d="m18 10 1-1A2 2 0 0 0 15.5 6.5l-1 1"/><circle cx="10.5" cy="13.5" r="5"/><path d="m13.5 16.5 5 5"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>Trust Building First</h4>
                             <p>Engagement first, data later</p>
                         </div>
                     </div>
                 </div>
 
+                <!-- ROW 3 -->
                 <div class="timeline-row">
-                    <div class="card left anim-item" data-delay="1200">
-                        <div class="text">
+                    <div class="card left anim-item" data-delay="600">
+                        <div class="card-icon-box">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2980b9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v7Z"/><path d="M3 11v3a4 4 0 0 0 4 4h10a4 4 0 0 0 4-4v-3"/><path d="M8 18v2"/><path d="M16 18v2"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>Individual Counselling</h4>
                             <p>Wait-to-fail model</p>
                         </div>
                     </div>
-                    <div class="timeline-node" data-delay="1100"></div>
-                    <div class="card right anim-item" data-delay="1300">
-                        <div class="text">
+                    <div class="timeline-node" data-row="3"></div>
+                    <div class="card right anim-item" data-delay="700">
+                        <div class="card-icon-box parwah-icon" style="background: #eaf2f8;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3498db" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>
+                        </div>
+                        <div class="card-text">
                             <h4>Trend Insights</h4>
                             <p>Grade/School level insight</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ROW 4 -->
+                <div class="timeline-row">
+                    <div class="card left anim-item" data-delay="800" style="visibility: hidden; pointer-events: none;">
+                    </div>
+                    <div class="timeline-node" data-row="4"></div>
+                    <div class="card right anim-item" data-delay="900">
+                        <div class="card-icon-box parwah-icon" style="background: #f4ecf7;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#9b59b6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div class="card-text">
+                            <h4>Continuous Check-ins</h4>
+                            <p>Weekly emotional tracking</p>
                         </div>
                     </div>
                 </div>
@@ -271,6 +314,19 @@
                     <p>Structured mental health support aligned with national guidelines.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="cta-section" style="padding: 64px 6%; text-align: center; background: #f9f7ff;">
+        <div class="container">
+            <h2 style="font-size: clamp(1.8rem, 5vw, 2.5rem); color: #1a365d; margin-bottom: 20px;">Ready to Transform Your School?</h2>
+            <p style="font-size: 1.1rem; color: #4a5568; margin-bottom: 30px; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Join the leading schools in prioritizing student wellbeing with PARWAH's integrated ecosystem.
+            </p>
+            <a href="#school-hero" class="btn-primary" style="display: inline-block; background: #6b46c1; color: #fff; padding: 14px 36px; border-radius: 50px; text-decoration: none; font-weight: 700; transition: transform 0.2s ease;">
+                Contact Us
+            </a>
         </div>
     </section>
 

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Knowledge Hub – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script>
+    // Immediate auth check
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link active">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Knowledge Hub</h1>
+        <p>Self-paced wellness courses & resources for students</p>
+        <div class="accent-bar"></div>
+      </div>
+      <div class="grid grid-cols-2 gap-4" id="courses-grid"></div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    function renderCourses() {
+      const grid = document.getElementById('courses-grid');
+      if (!grid) return;
+      grid.innerHTML = '';
+      
+      mockData.courses.forEach(c => {
+        const progressHTML = c.progress > 0
+          ? `<div class="progress-bar"><div class="progress-fill" style="width:${State.getCourseProgress(c.id)}%"></div></div><p class="text-xs text-muted">${State.getCourseProgress(c.id)}% complete</p>`
+          : `<button class="btn btn-soft btn-sm btn-full" data-action="join_course" data-id="${c.id}">Start Course</button>`;
+          
+        grid.innerHTML += `
+          <div class="card course-card">
+            <div class="icon">${c.icon}</div>
+            <h3>${c.title}</h3>
+            <p class="desc">${c.desc}</p>
+            <div class="course-meta"><span>📖 ${c.lessons.length} lessons</span><span>🕐 ${c.duration}</span></div>
+            ${progressHTML}
+            <button class="btn btn-ghost btn-sm mt-3 w-full" data-action="view_course" data-id="${c.id}">View Details</button>
+          </div>`;
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', renderCourses);
+  </script>
+</body>
+</html>

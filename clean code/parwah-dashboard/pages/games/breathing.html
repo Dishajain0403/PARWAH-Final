@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calm Breathing – Parwah Games</title>
+  <script>
+    window.PARWAH_CONFIG = { root: '../../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../../js/api.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .breathing-container {
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .circle {
+      width: 150px;
+      height: 150px;
+      background: var(--primary-color);
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: breathe 8s infinite ease-in-out;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      box-shadow: 0 0 50px var(--primary-light);
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(2); }
+    }
+    .instruction {
+      margin-top: 100px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+    .instruction {
+      margin-top: 100px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: var(--text-color);
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <main class="main p-6 text-center">
+    <div class="breathing-container">
+      <div class="circle" id="breatheText">Inhale</div>
+      <div class="instruction" id="subText">Follow the circle...</div>
+    </div>
+    <div class="mt-8">
+      <button onclick="history.back()" class="btn btn-outline">Back to Dashboard</button>
+    </div>
+  </main>
+
+  <script>
+    const breatheText = document.getElementById('breatheText');
+    const subText = document.getElementById('subText');
+    
+    setInterval(() => {
+      const isExhaling = breatheText.innerText === 'Inhale';
+      breatheText.innerText = isExhaling ? 'Exhale' : 'Inhale';
+      subText.innerText = isExhaling ? 'Hold... and release' : 'Slowly breathe in';
+    }, 4000);
+  </script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feedback – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+    // Redirection handled by requireAuth
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link active">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Feedback</h1>
+        <p>Your feedback is completely anonymous</p>
+        <div class="accent-bar"></div>
+      </div>
+      <div class="card card-lg space-y-6" id="feedback-form">
+        <h2 class="text-lg font-medium">Share Your Thoughts</h2>
+        <div>
+          <p class="text-sm text-muted mb-2">How would you rate your experience?</p>
+          <div class="stars" id="stars"></div>
+        </div>
+        <div>
+          <p class="text-sm text-muted mb-2">Tell us more (optional)</p>
+          <textarea class="feedback-input" placeholder="What do you like? What can we improve?"></textarea>
+        </div>
+        <button class="btn btn-primary" id="submitBtn" onclick="submitFeedback()" disabled>Submit Feedback</button>
+      </div>
+      <div id="feedback-thanks" style="display:none" class="card card-lg text-center" style="padding:2rem">
+        <span style="font-size:3rem;display:block;margin-bottom:0.75rem">🙏</span>
+        <p class="font-medium">Thank you for your feedback!</p>
+        <p class="text-sm text-muted mt-1">Your voice helps us improve.</p>
+        <button class="btn btn-ghost mt-4" onclick="resetFeedback()">Submit Another</button>
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    let rating = 0;
+    const starsEl = document.getElementById('stars');
+    const submitBtn = document.getElementById('submitBtn');
+    function renderStars() {
+      starsEl.innerHTML = '';
+      for(let i=1;i<=5;i++) {
+        const btn = document.createElement('button');
+        btn.className = 'star-btn';
+        btn.innerHTML = `<svg viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" class="${i<=rating?'filled':'empty'}"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`;
+        btn.onclick = () => { rating=i; renderStars(); submitBtn.disabled=false; };
+        starsEl.appendChild(btn);
+      }
+    }
+    renderStars();
+    function submitFeedback() {
+      document.getElementById('feedback-form').style.display='none';
+      document.getElementById('feedback-thanks').style.display='block';
+    }
+    function resetFeedback() {
+      rating=0; renderStars(); submitBtn.disabled=true;
+      document.getElementById('feedback-form').style.display='block';
+      document.getElementById('feedback-thanks').style.display='none';
+    }
+  </script>
+</body>
+</html>

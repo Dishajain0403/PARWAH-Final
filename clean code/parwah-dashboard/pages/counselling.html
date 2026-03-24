@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Counselling – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link active">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Counselling</h1>
+        <p>Book, view, and manage your counselling sessions</p>
+        <div class="accent-bar"></div>
+      </div>
+
+      <div class="card card-lg">
+        <h2 class="text-lg font-medium mb-2">Book a 1-on-1 Session</h2>
+        <p class="text-sm text-muted mb-5">Choose a time slot for a private counselling session.</p>
+        <button class="btn btn-primary" onclick="openBooking()">Book Counselling Session</button>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-medium mb-4">Upcoming</h2>
+        <div class="space-y-4">
+          <div class="card session-card flex items-center justify-between">
+            <div>
+              <div class="counselor">👤 Dr. Meera Patel</div>
+              <div class="meta"><span>📅 Nov 9, 2024</span><span>🕐 2:00 PM</span></div>
+              <span class="session-type">One-on-One</span>
+            </div>
+            <div class="flex flex-col items-end gap-2">
+              <span class="status-badge status-confirmed">Confirmed</span>
+              <a href="https://meet.google.com/abc-defg-hij" target="_blank" class="btn btn-soft btn-sm">Join Meeting</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <h2 class="text-lg font-medium mb-4">Past Sessions</h2>
+        <div class="space-y-4">
+          <div class="card session-card">
+            <div class="flex items-center justify-between mb-1"><span class="font-medium text-sm">Dr. Meera Patel</span><span class="text-xs text-muted">Oct 26, 2024</span></div>
+            <p class="text-sm text-muted">Discussed exam anxiety</p>
+          </div>
+          <div class="card session-card">
+            <div class="flex items-center justify-between mb-1"><span class="font-medium text-sm">Mr. Anil Kumar</span><span class="text-xs text-muted">Oct 19, 2024</span></div>
+            <p class="text-sm text-muted">Talked about peer relationships</p>
+          </div>
+          <div class="card session-card">
+            <div class="flex items-center justify-between mb-1"><span class="font-medium text-sm">Ms. Ritu Agarwal</span><span class="text-xs text-muted">Oct 12, 2024</span></div>
+            <p class="text-sm text-muted">Stress management techniques</p>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Booking Modal -->
+  <div class="modal-overlay" id="bookingModal">
+    <div class="modal" id="modalContent"></div>
+  </div>
+
+  <script src="../js/app.js"></script>
+  <script>
+    const dates = ["Mon, Nov 11","Wed, Nov 13","Fri, Nov 15","Mon, Nov 18"];
+    const slots = ["2:00 PM – 3:00 PM","3:30 PM – 4:30 PM","4:00 PM – 5:00 PM"];
+    let selDate = '', selSlot = '';
+    const modal = document.getElementById('bookingModal');
+    const mc = document.getElementById('modalContent');
+
+    function openBooking() { selDate=''; selSlot=''; showDateStep(); modal.classList.add('open'); }
+    function closeBooking() { modal.classList.remove('open'); }
+    modal.addEventListener('click', e => { if(e.target===modal) closeBooking(); });
+
+    function showDateStep() {
+      mc.innerHTML = `<button class="modal-close" onclick="closeBooking()">✕</button>
+        <h3 class="text-lg font-semibold mb-1">Select a Date</h3>
+        <p class="text-sm text-muted mb-5">Choose your preferred day</p>
+        <div class="space-y-4">${dates.map(d=>`<button class="slot-btn" onclick="pickDate('${d}')">${d}</button>`).join('')}</div>`;
+    }
+    function pickDate(d) { selDate=d; showSlotStep(); }
+    function showSlotStep() {
+      mc.innerHTML = `<button class="modal-close" onclick="closeBooking()">✕</button>
+        <h3 class="text-lg font-semibold mb-1">Select a Time Slot</h3>
+        <p class="text-sm text-muted mb-5">${selDate}</p>
+        <div class="space-y-4">${slots.map(s=>`<button class="slot-btn" onclick="pickSlot('${s}')">${s}</button>`).join('')}</div>
+        <button class="btn btn-ghost mt-4" onclick="showDateStep()">← Back</button>`;
+    }
+    function pickSlot(s) { selSlot=s; showConfirm(); }
+    function showConfirm() {
+      mc.innerHTML = `<button class="modal-close" onclick="closeBooking()">✕</button>
+        <h3 class="text-lg font-semibold mb-1">Confirm Booking</h3>
+        <p class="text-sm text-muted mb-5">Review your session details</p>
+        <div class="confirm-details mb-5">
+          <p>Date: <span>${selDate}</span></p>
+          <p>Time: <span>${selSlot}</span></p>
+          <p>Type: <span>1-on-1 Counselling</span></p>
+        </div>
+        <div class="flex gap-3"><button class="btn btn-ghost flex-1" onclick="showSlotStep()">Back</button><button class="btn btn-primary flex-1" onclick="showDone()">Confirm</button></div>`;
+    }
+    function showDone() {
+      mc.innerHTML = `<div class="text-center" style="padding:1rem 0">
+        <div style="width:56px;height:56px;border-radius:50%;background:var(--primary-light);display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.5rem">✓</div>
+        <h3 class="text-lg font-semibold mb-2">Booking Submitted!</h3>
+        <p class="text-sm text-muted mb-1">Your session on <strong>${selDate}</strong> at <strong>${selSlot}</strong> is awaiting confirmation.</p>
+        <p class="text-xs text-muted mb-4">You'll be notified once it's confirmed.</p>
+        <button class="btn btn-soft" onclick="closeBooking()">Done</button></div>`;
+    }
+  </script>
+</body>
+</html>

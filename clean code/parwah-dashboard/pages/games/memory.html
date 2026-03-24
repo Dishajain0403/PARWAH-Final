@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Pairs – Parwah Games</title>
+  <script>
+    window.PARWAH_CONFIG = { root: '../../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../../js/api.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+  <link rel="stylesheet" href="../../css/style.css">
+  <style>
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      max-width: 400px;
+      margin: 2rem auto;
+    }
+    .card-game {
+      aspect-ratio: 1;
+      background: var(--primary-color);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      cursor: pointer;
+      color: transparent;
+      transition: all 0.3s;
+    }
+    .card-game.flipped {
+      background: white;
+      color: initial;
+      border: 2px solid var(--primary-color);
+      transform: rotateY(180deg);
+    }
+    .card-game.matched {
+      background: #f0fdf4;
+      border-color: #22c55e;
+      color: #22c55e;
+      cursor: default;
+    }
+  </style>
+</head>
+<body class="bg-light">
+  <main class="main p-6 text-center">
+    <h1>Memory Pairs</h1>
+    <p class="mb-4">Matches found: <span id="matches">0</span>/8</p>
+    
+    <div id="grid" class="grid"></div>
+
+    <div class="mt-8">
+      <button onclick="history.back()" class="btn btn-outline">Back to Dashboard</button>
+    </div>
+  </main>
+
+  <script>
+    const icons = ['💡', '🧠', '🌈', '🌿', '🧘', '🎨', '📖', '💪'];
+    let cards = [...icons, ...icons].sort(() => 0.5 - Math.random());
+    const grid = document.getElementById('grid');
+    let flippedNodes = [];
+    let matches = 0;
+
+    function createBoard() {
+      cards.forEach((icon, index) => {
+        const div = document.createElement('div');
+        div.className = 'card-game';
+        div.innerText = icon;
+        div.onclick = () => flipCard(div, icon);
+        grid.appendChild(div);
+      });
+    }
+
+    function flipCard(node, icon) {
+      if (node.classList.contains('flipped') || node.classList.contains('matched') || flippedNodes.length === 2) return;
+
+      node.classList.add('flipped');
+      flippedNodes.push({ node, icon });
+
+      if (flippedNodes.length === 2) {
+        if (flippedNodes[0].icon === flippedNodes[1].icon) {
+          flippedNodes.forEach(f => f.node.classList.add('matched'));
+          matches++;
+          document.getElementById('matches').innerText = matches;
+          flippedNodes = [];
+          if (matches === 8) alert('You found all pairs! Great focus.');
+        } else {
+          setTimeout(() => {
+            flippedNodes.forEach(f => f.node.classList.remove('flipped'));
+            flippedNodes = [];
+          }, 1000);
+        }
+      }
+    }
+
+    createBoard();
+  </script>
+</body>
+</html>

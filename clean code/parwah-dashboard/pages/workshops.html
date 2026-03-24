@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshops – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script>
+    // Immediate auth check
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link active">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Workshops & Activities</h1>
+        <p>Join upcoming wellness sessions designed just for you</p>
+        <div class="accent-bar"></div>
+      </div>
+      <div class="space-y-4" id="workshop-list"></div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    function renderWorkshops() {
+      const list = document.getElementById('workshop-list');
+      if (!list) return;
+      list.innerHTML = '';
+      
+      mockData.workshops.forEach(w => {
+        list.innerHTML += `
+          <div class="card workshop-item">
+            <div class="workshop-icon">${w.icon}</div>
+            <div class="workshop-info">
+              <h3>${w.title}</h3>
+              <p>${w.date} • ${w.host}</p>
+            </div>
+            <div class="flex gap-2">
+              <button class="btn btn-soft btn-sm" data-action="view_workshop" data-id="${w.id}">Details</button>
+              <button class="btn btn-primary btn-sm" data-action="join_workshop" data-id="${w.id}">Join</button>
+            </div>
+          </div>`;
+      });
+    }
+    
+    document.addEventListener('DOMContentLoaded', renderWorkshops);
+  </script>
+</body>
+</html>

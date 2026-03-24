@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Announcement – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link active">Announcements</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div id="details-container">
+        <!-- Dynamic content -->
+      </div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    function renderDetails() {
+      const params = new URLSearchParams(window.location.search);
+      const id = parseInt(params.get('id'));
+      const announcement = mockData.announcements.find(a => a.id === id);
+      const container = document.getElementById('details-container');
+
+      if (!announcement) {
+        container.innerHTML = `<h1>Announcement Not Found</h1><a href="../index.html">Back to Dashboard</a>`;
+        return;
+      }
+
+      container.innerHTML = `
+        <div class="page-header">
+          <div class="flex items-center gap-4 mb-2">
+            <span class="text-4xl">${announcement.icon}</span>
+            <h1>${announcement.title}</h1>
+          </div>
+          <p class="text-muted">Posted on ${announcement.date}</p>
+          <div class="accent-bar"></div>
+        </div>
+        
+        <div class="card card-lg">
+          <p class="text-lg leading-relaxed">${announcement.content}</p>
+          <div class="pt-8">
+            <button class="btn btn-primary" onclick="history.back()">Back to Dashboard</button>
+          </div>
+        </div>
+      `;
+    }
+    document.addEventListener('DOMContentLoaded', renderDetails);
+  </script>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weekly Check-In – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="../js/api.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link active">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+      </ul>
+    </nav>
+    <main class="main">
+      <div class="quiz-container" id="quiz"></div>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    const questions = [
+      {q:"How are you feeling right now?", opts:["😔 Low","😐 Okay","😊 Good","😁 Great"]},
+      {q:"How well did you sleep last night?", opts:["😴 Poorly","😐 Okay","😌 Well","🌟 Amazing"]},
+      {q:"How stressed do you feel about school?", opts:["😰 Very stressed","😟 Somewhat","😌 A little","😊 Not at all"]},
+      {q:"Did you talk to a friend or family today?", opts:["😔 No","🤷 Briefly","😊 Yes!","🎉 Great time!"]},
+      {q:"Did you do something fun this week?", opts:["👎 Not really","🤷 A little","👍 Yes!","🎉 A lot!"]},
+      {q:"How confident about upcoming exams?", opts:["😰 Not confident","😟 Nervous","😌 Fairly","💪 Very!"]},
+    ];
+    let step = 0;
+    const quiz = document.getElementById('quiz');
+
+    function renderStep() {
+      if(step >= questions.length) {
+        quiz.innerHTML = `<div class="text-center" style="max-width:400px">
+          <span style="font-size:3.5rem;display:block;margin-bottom:0.5rem">💙</span>
+          <h1 class="text-xl font-semibold mb-2">Thank you for sharing, Pass</h1>
+          <p class="text-sm text-muted" style="max-width:320px;margin:0 auto 1.5rem">Your responses have been recorded. Remember, it's okay to not be okay. We're here for you.</p>
+          <a href="../index.html" class="btn btn-primary">Back to Dashboard</a>
+        </div>`;
+        return;
+      }
+      const q = questions[step];
+      quiz.innerHTML = `<div class="quiz-step">
+        <p class="text-sm text-accent font-medium mb-4">${step+1} of ${questions.length}</p>
+        <h2 class="text-xl font-semibold mb-6">${q.q}</h2>
+        <div class="quiz-options">${q.opts.map(o=>`<button class="quiz-option" onclick="answer()">${o}</button>`).join('')}</div>
+      </div>`;
+    }
+    function answer() { step++; renderStep(); }
+    renderStep();
+  </script>
+</body>
+</html>

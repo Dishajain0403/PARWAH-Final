@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script>
+    window.PARWAH_CONFIG = { root: '../../' };
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anonymous Reachout – Parwah</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../js/api.js"></script>
+  <script src="../js/mockData.js"></script>
+  <script>
+    Auth.requireAuth();
+  </script>
+</head>
+<body>
+  <div class="app">
+    <button class="hamburger" onclick="toggleSidebar()" aria-label="Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+
+    <!-- Notification Bell -->
+    <a href="announcements.html" class="notification-bell" aria-label="Announcements">
+      🔔
+      <span class="badge" id="notif-count">3</span>
+    </a>
+
+    <nav class="sidebar" id="sidebar">
+      <a href="../../index.html" class="logo">
+        <div class="logo-icon">
+          <img src="../../img/logo.svg" alt="Parwah" class="logo-img">
+        </div>
+      </a>
+      <ul class="nav-menu">
+        <li class="nav-item"><a href="../index.html" class="nav-link">Dashboard</a></li>
+        <li class="nav-item"><a href="announcements.html" class="nav-link">Announcements</a></li>
+        <li class="nav-item"><a href="workshops.html" class="nav-link">Workshops</a></li>
+        <li class="nav-item"><a href="counselling.html" class="nav-link">Counselling</a></li>
+        <li class="nav-item"><a href="knowledge-hub.html" class="nav-link">Knowledge Hub</a></li>
+        <li class="nav-item"><a href="anonymous-reachout.html" class="nav-link active">Anonymous Reachout</a></li>
+        <li class="nav-item"><a href="feedback.html" class="nav-link">Feedback</a></li>
+        <li class="nav-item"><a href="fun-activities.html" class="nav-link">Fun Activities</a></li>
+        <li class="nav-item"><a href="quiz.html" class="nav-link">Quiz</a></li>
+      </ul>
+    </nav>
+    <main class="main space-y-6">
+      <div class="page-header">
+        <h1>Anonymous Reachout</h1>
+        <p>Everything here is completely private & anonymous</p>
+      </div>
+      <div id="support-content"></div>
+
+      <!-- Previously Booked Sessions -->
+      <section class="space-y-4" style="margin-top: 3rem;">
+        <h2 class="text-lg font-semibold">Previously Booked Sessions</h2>
+        <div class="card session-card flex items-center justify-between">
+          <div>
+            <div class="counselor">👤 Counselor Priya</div>
+            <div class="meta"><span>📅 Oct 25, 2024</span><span>🕐 4:00 PM</span></div>
+            <span class="session-type">Anonymous Chat</span>
+          </div>
+          <span class="status-badge">Completed</span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="../js/app.js"></script>
+  <script>
+    const dates = [{day:"Mon",date:"24 Mar"},{day:"Tue",date:"25 Mar"},{day:"Wed",date:"26 Mar"},{day:"Thu",date:"27 Mar"},{day:"Fri",date:"28 Mar"}];
+    const slots = ["10:00 AM","11:30 AM","2:00 PM","3:30 PM","5:00 PM"];
+    const chatMsgs = [
+      {from:"counselor",text:"Hi there! Welcome to the anonymous chat. How can I help you today?",time:"2:00 PM"},
+      {from:"student",text:"I've been feeling really stressed about my exams coming up.",time:"2:01 PM"},
+      {from:"counselor",text:"That's completely normal. Many students feel the same way. Can you tell me more about what's making you anxious?",time:"2:02 PM"},
+      {from:"student",text:"I feel like I can't focus when I study, and then I panic because time is running out.",time:"2:03 PM"},
+      {from:"counselor",text:"I hear you. Let's work on some strategies together. Have you tried breaking your study sessions into smaller chunks?",time:"2:04 PM"},
+    ];
+    let selDate='', selSlot='';
+    const cont = document.getElementById('support-content');
+
+    function showIntro() {
+      cont.innerHTML = `<div class="card card-lg support-intro">
+        <div class="support-icon">💬</div>
+        <h2 class="text-xl font-semibold mb-2">Need someone to talk to?</h2>
+        <p class="text-sm text-muted mb-6">Book a private anonymous chat session with a trained counselor. Your identity is never shared.</p>
+        <button class="btn btn-primary btn-lg" onclick="showDates()" style="border-radius:1rem;padding:0.75rem 2rem">Book Anonymous Chat</button>
+      </div>`;
+    }
+    function showDates() {
+      cont.innerHTML = `<div class="card card-lg" style="max-width:420px;margin:0 auto">
+        <div class="flex items-center gap-3 mb-5"><span class="text-primary">📅</span><h2 class="text-lg font-semibold">Choose a Date</h2></div>
+        <div class="date-grid">${dates.map(d=>`<button class="date-btn" onclick="pickDate('${d.date}')"><div class="day-label">${d.day}</div><div class="date-label">${d.date}</div></button>`).join('')}</div>
+      </div>`;
+    }
+    function pickDate(d) { selDate=d; showSlots(); }
+    function showSlots() {
+      cont.innerHTML = `<div class="card card-lg" style="max-width:420px;margin:0 auto">
+        <div class="flex items-center gap-3 mb-2"><span class="text-primary">🕐</span><h2 class="text-lg font-semibold">Pick a Time Slot</h2></div>
+        <p class="text-sm text-muted mb-5">Date: ${selDate}</p>
+        <div class="slot-grid">${slots.map(s=>`<button class="time-btn" onclick="pickSlot('${s}')">${s}</button>`).join('')}</div>
+        <button class="btn btn-ghost mt-4" onclick="showDates()">← Back</button>
+      </div>`;
+    }
+    function pickSlot(s) { selSlot=s; showConfirm(); }
+    function showConfirm() {
+      cont.innerHTML = `<div class="card card-lg text-center" style="max-width:420px;margin:0 auto">
+        <h2 class="text-lg font-semibold mb-4">Confirm Your Session</h2>
+        <div class="confirm-details mb-6"><p>Date: <span>${selDate}</span></p><p>Time: <span>${selSlot}</span></p><p>Type: <span>Anonymous Chat</span></p></div>
+        <div class="flex gap-3 justify-center"><button class="btn btn-outline" onclick="showSlots()" style="border-radius:1rem">Back</button><button class="btn btn-primary" onclick="showWaiting()" style="border-radius:1rem;padding:0.6rem 1.5rem">Confirm Booking</button></div>
+      </div>`;
+    }
+    function showWaiting() {
+      cont.innerHTML = `<div class="card card-lg text-center" style="max-width:420px;margin:0 auto">
+        <div class="support-icon">✅</div>
+        <h2 class="text-xl font-semibold mb-2">Session Booked!</h2>
+        <p class="text-sm text-muted mb-1">${selDate} at ${selSlot}</p>
+        <p class="text-sm text-muted mb-6">Waiting for counselor confirmation. You'll be notified when your chat is ready.</p>
+        <button class="btn btn-primary" onclick="showChat()" style="border-radius:1rem">⏳ Enter Chat (Demo)</button>
+      </div>`;
+    }
+    function showChat() {
+      const msgs = chatMsgs.map(m=>`<div class="chat-bubble ${m.from}">${m.text}<div class="time">${m.time}</div></div>`).join('');
+      cont.innerHTML = `<div class="card chat-container">
+        <div class="chat-messages">${msgs}</div>
+        <div class="chat-input-bar">
+          <input type="text" class="chat-input" placeholder="Type your message...">
+          <button class="btn btn-primary btn-icon">➤</button>
+        </div>
+      </div>`;
+    }
+    showIntro();
+  </script>
+</body>
+</html>
